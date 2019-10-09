@@ -14,13 +14,13 @@ def _get_histogram_bins():
 def _get_demand_curve(market):
     demand_prices = [buyer.get_max_price() for buyer in market.get_buyers()]
     histogram, bins = np.histogram(demand_prices, _get_histogram_bins())
-    return list(np.cumsum(histogram))
+    return list(reversed(np.cumsum(histogram)))
 
 
 def _get_supply_curve(market):
     supply_prices = [seller.get_min_price() for seller in market.get_sellers()]
     histogram, bins = np.histogram(supply_prices, _get_histogram_bins())
-    return list(reversed(np.cumsum(histogram)))
+    return list(np.cumsum(histogram))
 
 
 if __name__ == '__main__':
